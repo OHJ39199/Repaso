@@ -5,18 +5,14 @@
              xmlns:viewmodel="clr-namespace:Repaso.MVVM.ViewModels"
              x:DataType="viewmodel:MainViewModels"
              Title="MainPage">
-    <VerticalStackLayout>
+    <VerticalStackLayout VerticalOptions="Center">
         <HorizontalStackLayout HorizontalOptions="Center">
             <Button Text="calculadora IVA"
                     Command="{Binding NavigateToIVACommand}"
-                    Background="LightBlue"
-                    TextColor="Black"
-                    Margin="10,10,10,10"/>
+                    Style="{StaticResource MainPageButtonStyle}"/>
             <Button Text="mascotas"
                     Command="{Binding NavigateToMascotasCommand}"
-                    Background="LightGreen"
-                    TextColor="Black"
-                    Margin="10,10,10,10"/>
+                    Style="{StaticResource MainPageButtonStyle}"/>
         </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

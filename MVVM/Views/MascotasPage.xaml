@@ -5,47 +5,28 @@
              Title="Mascotas">
 
     <VerticalStackLayout Padding="20" Spacing="10">
-        <Label Text="Lista de Mascotas" FontSize="24" HorizontalOptions="Center"/>
+        <Label Text="Lista de Mascotas" Style="{StaticResource MascotasTitleStyle}"/>
 
-        <ListView ItemsSource="{Binding Mascotas}">
-            <ListView.ItemTemplate>
+        <CollectionView ItemsSource="{Binding Mascotas}">
+            <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
-                        <Grid Padding="10">
-                            <Grid.Triggers>
-                                <DataTrigger TargetType="Grid" 
-                                         Binding="{Binding Type}" 
-                                         Value="Dog">
-                                    <Setter Property="BackgroundColor" 
-                                        Value="{StaticResource DogBackgroundColor}" />
-                                </DataTrigger>
-                                <DataTrigger TargetType="Grid" 
-                                         Binding="{Binding Type}" 
-                                         Value="Cat">
-                                    <Setter Property="BackgroundColor" 
-                                        Value="{StaticResource CatBackgroundColor}" />
-                                </DataTrigger>
-                            </Grid.Triggers>
+                    <Grid Style="{StaticResource MascotaGridStyle}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
 
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Image Grid.Column="0" 
+                        <Image Grid.Column="0" 
                                Source="{Binding ImageUrl}" 
-                               HeightRequest="50" 
-                               WidthRequest="50" 
-                               Aspect="AspectFill"/>
+                               Style="{StaticResource MascotaImageStyle}"/>
 
-                            <VerticalStackLayout Grid.Column="1" Padding="10,0,0,0">
-                                <Label Text="{Binding Name}" FontAttributes="Bold"/>
-                                <Label Text="{Binding Breed}"/>
-                            </VerticalStackLayout>
-                        </Grid>
-                    </ViewCell>
+                        <VerticalStackLayout Grid.Column="1" Padding="10,0,0,0">
+                            <Label Text="{Binding Name}" Style="{StaticResource MascotaNameStyle}"/>
+                            <Label Text="{Binding Breed}"/>
+                        </VerticalStackLayout>
+                    </Grid>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
 </ContentPage>

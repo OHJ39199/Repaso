@@ -2,7 +2,63 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
+    <!-- Colores para el fondo de las mascotas -->
     <Color x:Key="DogBackgroundColor">LightBlue</Color>
     <Color x:Key="CatBackgroundColor">LightPink</Color>
+
+    <!-- Estilos para los botones de la MainPage -->
+    <Style x:Key="MainPageButtonStyle" TargetType="Button">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="Padding" Value="20,10"/>
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="Background" Value="LightGreen"/>
+        <Setter Property="TextColor" Value="Black"/>
+    </Style>
+
+    <!-- Estilos para MascotasPage -->
+    <Style x:Key="MascotasTitleStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="Margin" Value="0,0,0,10"/>
+    </Style>
+
+    <Style x:Key="MascotasCollectionViewStyle" TargetType="CollectionView">
+        <Setter Property="SelectionMode" Value="None"/>
+        <Setter Property="ItemsLayout">
+            <Setter.Value>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MascotaGridStyle" TargetType="Grid">
+        <Setter Property="Padding" Value="10"/>
+        <Setter Property="ColumnSpacing" Value="10"/>
+        <Style.Triggers>
+            <DataTrigger TargetType="Grid" Binding="{Binding Type}" Value="Dog">
+                <Setter Property="BackgroundColor" Value="{StaticResource DogBackgroundColor}" />
+            </DataTrigger>
+            <DataTrigger TargetType="Grid" Binding="{Binding Type}" Value="Cat">
+                <Setter Property="BackgroundColor" Value="{StaticResource CatBackgroundColor}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="MascotaImageStyle" TargetType="Image">
+        <Setter Property="HeightRequest" Value="60"/>
+        <Setter Property="WidthRequest" Value="60"/>
+        <Setter Property="Aspect" Value="AspectFill"/>
+    </Style>
+
+    <Style x:Key="MascotaNameStyle" TargetType="Label">
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="FontSize" Value="18"/>
+    </Style>
+
+    <Style x:Key="MascotaBreedStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="TextColor" Value="Gray"/>
+    </Style>
 
 </ResourceDictionary>
