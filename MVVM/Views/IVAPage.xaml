@@ -3,9 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Repaso.MVVM.Views.IVAPage"
              Title="IVAPage">
-    <VerticalStackLayout>
-        <Label Text="IVA Calculator Page" 
-               VerticalOptions="Center" 
-               HorizontalOptions="Center" />
+    
+    <VerticalStackLayout Padding="20" Spacing="20">
+        <Label Text="Calculadora de IVA" FontSize="24" HorizontalOptions="Center"/>
+
+        <Entry Placeholder="Ingrese el monto" Text="{Binding Amount, Mode=TwoWay}" Keyboard="Numeric"/>
+
+        <Picker Title="Seleccione el porcentaje de IVA" 
+                ItemsSource="{Binding IVARates}" 
+                SelectedItem="{Binding SelectedIVARate, Mode=TwoWay}"/>
+
+        <Button Text="Calcular" Command="{Binding CalculateCommand}"/>
+
+        <VerticalStackLayout IsVisible="{Binding IsResultVisible}">
+            <Label Text="Resultado:" FontSize="18"/>
+            <Label Text="{Binding BaseAmount, StringFormat='Monto base: {0:C2}'}" />
+            <Label Text="{Binding IVAAmount, StringFormat='IVA: {0:C2}'}" />
+            <Label Text="{Binding TotalAmount, StringFormat='Total: {0:C2}'}" FontAttributes="Bold"/>
+        </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

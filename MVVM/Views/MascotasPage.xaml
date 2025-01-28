@@ -2,10 +2,50 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Repaso.MVVM.Views.MascotasPage"
-             Title="MascotasPage">
-    <VerticalStackLayout>
-        <Label Text="Mascotas Page" 
-               VerticalOptions="Center" 
-               HorizontalOptions="Center" />
+             Title="Mascotas">
+
+    <VerticalStackLayout Padding="20" Spacing="10">
+        <Label Text="Lista de Mascotas" FontSize="24" HorizontalOptions="Center"/>
+
+        <ListView ItemsSource="{Binding Mascotas}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10">
+                            <Grid.Triggers>
+                                <DataTrigger TargetType="Grid" 
+                                         Binding="{Binding Type}" 
+                                         Value="Dog">
+                                    <Setter Property="BackgroundColor" 
+                                        Value="{StaticResource DogBackgroundColor}" />
+                                </DataTrigger>
+                                <DataTrigger TargetType="Grid" 
+                                         Binding="{Binding Type}" 
+                                         Value="Cat">
+                                    <Setter Property="BackgroundColor" 
+                                        Value="{StaticResource CatBackgroundColor}" />
+                                </DataTrigger>
+                            </Grid.Triggers>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Grid.Column="0" 
+                               Source="{Binding ImageUrl}" 
+                               HeightRequest="50" 
+                               WidthRequest="50" 
+                               Aspect="AspectFill"/>
+
+                            <VerticalStackLayout Grid.Column="1" Padding="10,0,0,0">
+                                <Label Text="{Binding Name}" FontAttributes="Bold"/>
+                                <Label Text="{Binding Breed}"/>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </VerticalStackLayout>
 </ContentPage>
